@@ -1,4 +1,5 @@
 import { MdAddShoppingCart } from "react-icons/md";
+import { BrowserRoute as Router, Link } from "react-router-dom";
 
 function ProductCard({ data }) {
   return (
@@ -8,7 +9,9 @@ function ProductCard({ data }) {
       </div>
       <div className="product-details flex">
         <div>
-          <h3>{data.name}</h3>
+          <h3>
+            <Link to={`/product/${data._id}`}>{data.name}</Link>
+          </h3>
           <span>${data.price}</span>
         </div>
 

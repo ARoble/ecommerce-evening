@@ -1,4 +1,5 @@
 import { MdShoppingCart } from "react-icons/md";
+import { BrowserRoute as Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -7,6 +8,7 @@ function Header() {
       <ul className="nav-links">
         <li>Home</li>
         <li>Products</li>
+        <li>Admin</li>
       </ul>
       <h2 className="hover">
         <MdShoppingCart />
