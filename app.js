@@ -9,9 +9,11 @@ app.use(bodyParser());
 app.use(cors());
 const productRouter = require("./Routes/productRoutes");
 const userRouter = require("./Routes/userRoutes");
+const reviewRouter = require("./Routes/reviewRoutes");
 
 app.use("/api/product", productRouter);
 app.use("/api/user", userRouter);
+app.use("/api/review", reviewRouter);
 
 const port = process.env.PORT || 8000;
 

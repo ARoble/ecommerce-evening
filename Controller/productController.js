@@ -16,7 +16,15 @@ exports.products = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
+    const { name, price, description } = req.body;
+    if (name === "" || price === "" || description === "") {
+      return res.status(400).json({
+        message: "Please fill out all required fields",
+      });
+    }
+
     await Product.create(req.body);
+
     res.status(201).json({
       message: "created product",
     });
@@ -28,11 +36,10 @@ exports.createProduct = async (req, res) => {
 };
 exports.getProduct = async (req, res) => {
   try {
-    const product = await Product.findOne({ id: req.params.id });
-
+    const product = await Product.findOne({ _id: req.params.id });
     res.status(200).json({
       message: "Found product",
-      data: product,
+      product,
     });
   } catch (e) {
     res.status(400).json({

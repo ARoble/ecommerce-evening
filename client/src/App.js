@@ -3,6 +3,7 @@ import Header from "./Header";
 import Home from "./Components/Home";
 import Product from "./Components/Product";
 import ProductAdd from "./Components/Admin/ProductAdd";
+import ProductList from "./Components/Admin/ProductList";
 import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +18,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/product/add" component={ProductAdd} />
+          <Route exact path="/product/edit/:id" component={ProductAdd} />
+          <Route exact path="/product/list" component={ProductList} />
           <Route exact path="/product/:id" component={Product} />
         </Switch>
 
