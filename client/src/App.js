@@ -2,8 +2,11 @@ import "./style.css";
 import Header from "./Header";
 import Home from "./Components/Home";
 import Product from "./Components/Product";
+import Login from "./Components/Login";
+import CheckOut from "./Components/CheckOut";
 import ProductAdd from "./Components/Admin/ProductAdd";
 import ProductList from "./Components/Admin/ProductList";
+import OrderList from "./Components/Admin/OrderList";
 import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,13 +20,16 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/checkOut" exact component={CheckOut} />
           <Route exact path="/product/add" component={ProductAdd} />
           <Route exact path="/product/edit/:id" component={ProductAdd} />
           <Route exact path="/product/list" component={ProductList} />
           <Route exact path="/product/:id" component={Product} />
+          <Route path="/order/list" component={OrderList} />
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </Router>
       <ToastContainer
         position="top-right"

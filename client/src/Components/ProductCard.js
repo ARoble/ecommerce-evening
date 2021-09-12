@@ -10,7 +10,9 @@ function ProductCard({ data }) {
       <div className="product-details flex">
         <div>
           <h3>
-            <Link to={`/product/${data._id}`}>{data.name}</Link>
+            <Link className="link" to={`/product/${data._id}`}>
+              {data.name}
+            </Link>
           </h3>
           <span>${data.price}</span>
         </div>

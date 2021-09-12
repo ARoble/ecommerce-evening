@@ -4,6 +4,8 @@
 }
 body{
     font-family: 'Montserrat', sans-serif;
+    position: relative;
+min-height:100vh;
 }
 .flex{
     display:flex
@@ -17,7 +19,9 @@ body{
     margin:auto
 }
 
-
+.input{
+    padding:6px 4px;
+}
 .nav-bar{
     width:70%;
     margin:auto;
@@ -37,7 +41,24 @@ body{
     color:dodgerblue
 }
 
-
+/* ADMIN NAV */
+.admin-nav{
+    width:15%
+}
+.admin-nav ul li{
+    list-style-type: none;
+}
+.admin-nav ul{
+    margin-top:20px
+}
+.admin-nav ul li{
+    background: #ededed;
+    padding:10px;
+    text-align:center;
+    margin:5px 0px;
+    border-radius: 5px;;
+}
+/* ADMIN NAV */
 /* FEATURED PRODUCT CSS */
 .main-banner{
     height:500px;
@@ -64,7 +85,8 @@ body{
 }
 .featured-image{
     height:100%;
-    padding-left:50px
+    padding-right:50px;
+    float:right
 }
 
 .btn-feature{
@@ -131,6 +153,17 @@ width:180px;
     padding:6px 9px;
     margin:0px 4px;
 }
+.btn-addCart{
+    border:none;
+    height:30px;
+    width:30px;
+    background-color:dodgerblue;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size:20px
+}
 .details-image img{
     float:right;
     padding:0px 50px;
@@ -144,19 +177,152 @@ margin:13px 0px
 /* PRODUCT DETAILS CSS */
 
 /* REVIEW CSS */
-.review{
-    border-top:1px solid black
+.divider{
+    width:60%;
+    margin:auto;
+    border-top:1px solid #cccccc
 }
-.review-list, .add-review{
+.review-list{
     width:50%;
+}
+.review{
+    width:70%;
+}
+.review ,.review-user,.review-heading{
+    margin:0px;
+}
+
+.review-form{
+  
+    width:25%
+}
+.review-user{
+    align-items:center;
+    height:30px;
+}
+.review-user img{
+    height:100%;
+}
+.review-heading{
+    align-items:center;
+}
+.review-heading div,.review-user img{
+    margin-right:5px;
+}
+.star{
+    color:gold !important;
+}
+.add-review{
+    flex-direction: column;
+    
+}
+
+.btn-review{
+    border:none;
+    border-radius:5px;
+    color:white;
+    background:#6fe300;
+    width:100px;
+    margin-top:10px;
+}
+.add-review .review-star{
+    font-size:20px
 }
 /* REVIEW CSS */
 
+/* CART CSS */
+.cart-icon{
+    position:relative;
+    align-items: center;
+}
+.cart-items{
+    position: absolute;
+    background-color:dodgerblue;
+    color: white;
+    font-size:10px;
+    padding:2px 4.5px;
+    border-radius: 50%;
+}
+/* CART CSS */
+
+/* CHECKOUT CSS */
+.checkout{
+    width:600px;
+    margin:auto;
+}
+.table-total{
+    height:70px;
+    font-weight: bold;
+}
+.link{
+    text-decoration: none;
+    color:inherit
+}
+.btn-checkout{
+    margin-right: 40px;
+    border:none;
+    background:dodgerblue;
+    color:white;
+    padding:10px 13px;
+    border-radius:5px
+}
+.shipping-info{
+    justify-content: center
+}
+.shipping-form{
+    text-align:center;
+    width:400px
+}
+.shipping-form input{
+    width:70%
+}
+/* CHECKOUT CSS */
+
+/* LOGIN CSS */
+.login-card{
+    width:500px;
+    margin:20px auto;
+text-align: center;
+}
+/* LOGIN CSS */
+
+
+/* ADMIN CSS */
+.admin-section{
+    width:50%;
+    margin:auto;
+}
+.admin-heading{
+    margin-bottom:20px;
+    text-align: center;
+}
+.product-form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+    align-items:center;
+}
+.product-form input{
+    margin:5px 0px;
+    width:60%;
+}
+table th {
+    width:150px;
+    height:40px;
+   
+}
+table tr{
+text-align:center;
+}
+/* ADMIN CSS */
+
 /* FOOTER CSS */
 .footer{
-    padding:15px 0px;
-    /* position:fixed;
-    bottom:0;
-    width:100% */
+    padding-top:50px;
+    position:absolute;
+   bottom:0;
+   text-align: center;
+   width:100%;
 }
 /* FOOTER CSS */
