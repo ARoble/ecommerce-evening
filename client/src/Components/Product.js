@@ -26,8 +26,10 @@ function Product() {
 
   function addToCart(product) {
     //CODE
-
-    if (localStorage.getItem("cart") === undefined) {
+    if (
+      localStorage.getItem("cart") === undefined ||
+      localStorage.getItem("cart") === null
+    ) {
       product.quanity = qty;
       const cart = [product];
       localStorage.setItem("cart", JSON.stringify(cart));
