@@ -34,6 +34,8 @@ function CheckOut() {
       .post("http://localhost:8000/api/order", body)
       .then((res) => console.log(res))
       .catch((e) => console.log(e.response));
+
+    localStorage.removeItem("cart");
   }
   return (
     <div className="container ">

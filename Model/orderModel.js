@@ -37,6 +37,10 @@ const orderSchema = mongoose.Schema({
     },
   ],
   total: Number,
+  fullfilled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const orderModel = mongoose.model("order", orderSchema);

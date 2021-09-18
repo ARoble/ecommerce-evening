@@ -35,8 +35,15 @@ function Product() {
       localStorage.setItem("cart", JSON.stringify(cart));
     } else {
       const cart = JSON.parse(localStorage.getItem("cart"));
-      const updateCart = [...cart, product];
-      localStorage.setItem("cart", JSON.stringify(updateCart));
+      cart.map((item, key) => {
+        if (item._id === product._id) {
+          cart[key].quanity = product.quanity;
+          localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+          const updateCart = [...cart, product];
+          localStorage.setItem("cart", JSON.stringify(updateCart));
+        }
+      });
     }
   }
   return <>{loading === true ? <Loading /> : render()}</>;
