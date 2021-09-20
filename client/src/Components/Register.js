@@ -3,28 +3,27 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
-function Login() {
-  const history = useHistory();
+function Register() {
+  let history = useHistory();
   const [user, setUser] = useState({
     email: "",
+    username: "",
     password: "",
   });
 
-  function login() {
-    //code
-
+  function signUp() {
     axios
-      .post("http://localhost:8000/api/user/signUp", user)
+      .post("http://localhost:8000/api/user", user)
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        toast.success("User Logged In");
-        history.push("/checkout");
+        toast.success("user created");
+        history.push("/");
       })
       .catch((e) => toast.error(e.response.data.message));
   }
+
   return (
     <div className="login-card">
-      <h2>Login</h2>
+      <h2>Sign up</h2>
       <div>
         <input
           type="text"
@@ -36,16 +35,25 @@ function Login() {
       <div>
         <input
           type="text"
+          placeholder="username"
+          className="input"
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
+        />
+      </div>
+      <div>
+        <input
+          type="password"
           placeholder="password"
           className="input"
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
       </div>
-      <button className="btn-review hover" onClick={() => login()}>
-        Login
+
+      <button className="btn-review hover" onClick={() => signUp()}>
+        Sign Up
       </button>
     </div>
   );
 }
 
-export default Login;
+export default Register;
