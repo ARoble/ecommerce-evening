@@ -13,14 +13,16 @@ function CheckOut() {
   const [total, setTotal] = useState(0);
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("cart"));
-    let sub = 0;
-    for (let i = 0; i < items.length; i++) {
-      sub += items[i].price * items[i].quanity;
-    }
+    if (JSON.parse(localStorage.getItem("cart")) !== null) {
+      const items = JSON.parse(localStorage.getItem("cart"));
+      let sub = 0;
+      for (let i = 0; i < items.length; i++) {
+        sub += items[i].price * items[i].quanity;
+      }
 
-    setTotal(sub);
-    setCart(items);
+      setTotal(sub);
+      setCart(items);
+    }
   }, []);
 
   function placeOrder() {

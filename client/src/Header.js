@@ -3,10 +3,7 @@ import { MdShoppingCart, MdPermIdentity, MdExitToApp } from "react-icons/md";
 import { useEffect, useState } from "react";
 function Header() {
   const [items, setItems] = useState(0);
-  const [user, setUser] = useState();
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("user"));
-    setUser(currentUser);
     if (
       localStorage.getItem("cart") === undefined ||
       localStorage.getItem("cart") === null
@@ -31,16 +28,19 @@ function Header() {
         <Link className="link" to="/product">
           <li>Products</li>
         </Link>
-
-        <Link className="link" to="/product/list">
-          <li>Admin</li>
-        </Link>
+        {localStorage.getItem("user") !== null &&
+          JSON.parse(localStorage.getItem("user").role === "admin") && (
+            <Link className="link" to="/product/list">
+              <li>Admin</li>
+            </Link>
+          )}
       </ul>
       <h2 className="hover cart-icon">
         <Link className="link" to="/checkout">
           <MdShoppingCart />
           <small>{items}</small>
         </Link>
+
         <Link className="link" to="/login">
           <MdPermIdentity />
         </Link>

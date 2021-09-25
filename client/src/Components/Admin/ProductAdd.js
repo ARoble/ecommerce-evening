@@ -11,19 +11,27 @@ function ProductAdd() {
     price: 0,
     quanity: 0,
     description: "",
-    image: "image",
+    image: "",
   });
   const { id } = useParams();
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/product/${id}`)
-      .then((res) => setProduct(res.data.product));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8000/api/product/${id}`)
+  //     .then((res) => setProduct(res.data.product));
+  // }, []);
 
   function save(e) {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", product.name);
+    formData.append("category", product.categort);
+    formData.append("price", product.price);
+    formData.append("quanity", product.quanity);
+    formData.append("description", product.description);
+    formData.append("image", product.image);
+
     axios
-      .post("http://localhost:8000/api/product", product)
+      .post("http://localhost:8000/api/product", formData)
       .then((res) => console.log(res))
       .catch((e) => toast.error(e.response.data.message));
   }
@@ -38,7 +46,7 @@ function ProductAdd() {
     <div className="container flex">
       <AdminNav />
       <div className="admin-section">
-        <form className="product-form">
+        <form className="product-form" encrypt="">
           <h2 className="admin-heading">Add Product</h2>
           <input
             type="text"
@@ -81,7 +89,15 @@ function ProductAdd() {
               setProduct({ ...product, description: e.target.value })
             }
           />
-          <input type="file" placeholder="Image " />
+          <input
+            type="file"
+            placeholder="Image"
+            name="image"
+            onChange={(e) => {
+              setProduct({ ...product, image: e.target.files[0] });
+              console.log(e.target.files[0]);
+            }}
+          />
           {id !== undefined ? (
             <button className="btn-review hover" onClick={(e) => update(e)}>
               Update Product

@@ -35,7 +35,7 @@ function Login() {
       </div>
       <div>
         <input
-          type="text"
+          type="password"
           placeholder="password"
           className="input"
           onChange={(e) => setUser({ ...user, password: e.target.value })}

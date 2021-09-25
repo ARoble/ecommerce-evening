@@ -53,7 +53,7 @@ function Product() {
       <div className="container ">
         <div className="flex">
           <div className="details-image">
-            <img src="./../iphone.png" alt="iphone" />
+            <img src={`http://localhost:8000/${product.image}`} alt="iphone" />
           </div>
           <div className="details-desc">
             <h2>{product.name}</h2>

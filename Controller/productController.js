@@ -16,6 +16,7 @@ exports.products = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
+    req.body.image = req.file.path;
     const { name, price, description } = req.body;
     if (name === "" || price === "" || description === "") {
       return res.status(400).json({
