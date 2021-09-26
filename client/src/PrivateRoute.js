@@ -8,11 +8,11 @@ import {
 function PrivateRoute(props) {
   return (
     <>
-      {localStorage.getItem("user") === null ? (
+      {/* {localStorage.getItem("user") === null ? (
         <Redirect to="/login" />
-      ) : (
-        <Route path={props.path} component={props.component} />
-      )}
+      ) : ( */}
+      <Route path={props.path} component={props.component} />
+      {/* )} */}
     </>
   );
 }

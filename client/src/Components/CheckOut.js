@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CheckOut() {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     firstName: "",
     secondName: "",
@@ -34,8 +37,11 @@ function CheckOut() {
 
     axios
       .post("http://localhost:8000/api/order", body)
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e.response));
+      .then((res) => {
+        toast.success("Thank you for your order");
+        history.pushState("/");
+      })
+      .catch((e) => toast.error(e.response.data.message));
 
     localStorage.removeItem("cart");
   }

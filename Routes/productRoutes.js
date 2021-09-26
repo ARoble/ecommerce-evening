@@ -27,7 +27,7 @@ router
 router
   .route("/:id")
   .get(productController.getProduct)
-  .put(productController.editProduct)
+  .put(upload.single("image"), productController.editProduct)
   .delete(productController.deleteProduct);
 
 module.exports = router;

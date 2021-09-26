@@ -5,7 +5,7 @@ function ProductCard({ data }) {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src="./iphone.png" alt="product" />
+        <img src={`http://localhost:8000/${data.image}`} alt="product" />
       </div>
       <div className="product-details flex">
         <div>

@@ -16,7 +16,7 @@ exports.products = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    req.body.image = req.file.path;
+    req.body.image = req.file.filename;
     const { name, price, description } = req.body;
     if (name === "" || price === "" || description === "") {
       return res.status(400).json({
@@ -50,6 +50,10 @@ exports.getProduct = async (req, res) => {
 };
 exports.editProduct = async (req, res) => {
   try {
+    if (req.file !== undefined) {
+      req.body.image = req.file.filename;
+    }
+
     await Product.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json({
       message: "edited product",

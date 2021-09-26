@@ -1,10 +1,15 @@
 import { MdStar, MdShoppingBasket } from "react-icons/md";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRoute as Router, useParams } from "react-router-dom";
+import {
+  BrowserRoute as Router,
+  useParams,
+  useHistory,
+} from "react-router-dom";
 import Loading from "../Loading";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm";
+import { toast } from "react-toastify";
 
 function Product() {
   const { id } = useParams();
@@ -12,7 +17,7 @@ function Product() {
   const [reviews, setReviews] = useState([]);
   const [qty, setQty] = useState(0);
   const [loading, setLoading] = useState(true);
-
+  const history = useHistory();
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${id}`).then((res) => {
       setProduct(res.data.product);
@@ -44,6 +49,8 @@ function Product() {
           localStorage.setItem("cart", JSON.stringify(updateCart));
         }
       });
+      toast.success("Item added to cart");
+      history.push("/checkout");
     }
   }
   return <>{loading === true ? <Loading /> : render()}</>;

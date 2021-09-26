@@ -1,21 +1,27 @@
 import { MdModeEdit, MdDelete } from "react-icons/md";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRoute as Router, Link } from "react-router-dom";
+import { BrowserRoute as Router, Link, useHistory } from "react-router-dom";
 import AdminNav from "./AdminNav";
+import { toast } from "react-toastify";
 
 function ProductList() {
   const [products, setProduct] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/product")
       .then((res) => setProduct(res.data.data));
-  });
+  }, [products]);
 
   function deleteProduct(id) {
     axios
       .delete(`http://localhost:8000/api/product/${id}`)
-      .then((res) => console.log(res));
+      .then((res) => {
+        toast.success("product deleted");
+        history.push("/product/list");
+      })
+      .catch((e) => toast.error(e.response.data.message));
   }
   return (
     <div className="container flex">

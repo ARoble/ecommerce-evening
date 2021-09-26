@@ -28,12 +28,9 @@ function Header() {
         <Link className="link" to="/product">
           <li>Products</li>
         </Link>
-        {localStorage.getItem("user") !== null &&
-          JSON.parse(localStorage.getItem("user").role === "admin") && (
-            <Link className="link" to="/product/list">
-              <li>Admin</li>
-            </Link>
-          )}
+        <Link className="link" to="/product/list">
+          <li>Admin</li>
+        </Link>
       </ul>
       <h2 className="hover cart-icon">
         <Link className="link" to="/checkout">
