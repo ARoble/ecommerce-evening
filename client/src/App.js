@@ -10,7 +10,7 @@ import ProductList from "./Components/Admin/ProductList";
 import OrderList from "./Components/Admin/OrderList";
 import PrivateRoute from "./PrivateRoute";
 import Footer from "./Footer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";

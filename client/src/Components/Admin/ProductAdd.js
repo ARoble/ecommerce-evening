@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams, useHistory } from "react-router-dom";
 import AdminNav from "./AdminNav";
-
+import { addProduct, getOneProduct } from "../../Services/API";
 function ProductAdd() {
   const history = useHistory();
   const [product, setProduct] = useState({
@@ -17,9 +17,7 @@ function ProductAdd() {
   const { id, edit } = useParams();
   useEffect(() => {
     if (id) {
-      axios
-        .get(`http://localhost:8000/api/product/${id}`)
-        .then((res) => setProduct(res.data.product));
+      getOneProduct(id).then((res) => setProduct(res.data.product));
     }
   }, []);
 
@@ -33,8 +31,7 @@ function ProductAdd() {
     formData.append("description", product.description);
     formData.append("image", product.image);
 
-    axios
-      .post("http://localhost:8000/api/product", formData)
+    addProduct(formData)
       .then((res) => {
         toast.success("Product is saved");
         history.push("/product/list");

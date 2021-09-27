@@ -2,12 +2,14 @@ import ProductCard from "./ProductCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./../Loading";
+import { getAllProducts } from "../Services/API";
+
 function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/product/").then((res) => {
+    getAllProducts().then((res) => {
       setProducts(res.data.data);
       setLoading(false);
     });
@@ -48,7 +50,9 @@ function Home() {
             {loading === true ? (
               <Loading />
             ) : (
-              products.map((product) => <ProductCard data={product} />)
+              products.map((product) => (
+                <ProductCard key={product._id} data={product} />
+              ))
             )}
           </div>
         </div>
