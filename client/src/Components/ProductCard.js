@@ -16,8 +16,6 @@ function ProductCard({ data }) {
           </h3>
           <span>${data.price}</span>
         </div>
-
-        <MdAddShoppingCart className="cart-hover" size={"33px"} />
       </div>
     </div>
   );

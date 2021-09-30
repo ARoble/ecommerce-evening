@@ -15,18 +15,12 @@ function Header() {
     }
   });
 
-  function logout() {
-    localStorage.removeItem("user");
-  }
   return (
     <div className="flex nav-bar">
       <h2>The Shop</h2>
       <ul className="nav-links">
         <Link className="link" to="/">
           <li>Home</li>
-        </Link>
-        <Link className="link" to="/product">
-          <li>Products</li>
         </Link>
         <Link className="link" to="/product/list">
           <li>Admin</li>
@@ -41,10 +35,6 @@ function Header() {
         <Link className="link" to="/login">
           <MdPermIdentity />
         </Link>
-        {localStorage.getItem("user") !== null && (
-          <MdExitToApp onClick={() => logout()} />
-        )}
-        {/* <small className="cart-items">2</small> */}
       </h2>
     </div>
   );

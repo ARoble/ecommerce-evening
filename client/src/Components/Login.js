@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Login() {
   const history = useHistory();
@@ -44,6 +44,11 @@ function Login() {
       <button className="btn-review hover" onClick={() => login()}>
         Login
       </button>
+      <div>
+        <small>
+          Don't have an account? <Link to="register">Register</Link>
+        </small>
+      </div>
     </div>
   );
 }

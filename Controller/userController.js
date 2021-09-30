@@ -1,6 +1,5 @@
 const User = require("./../Model/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 exports.saveUser = async (req, res) => {
   try {
@@ -35,14 +34,7 @@ exports.loginUser = async (req, res) => {
       return res.status(404).send({ message: "Wrong Email or Password" });
     }
     user.password = undefined;
-    const token = await jwt.sign(
-      {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60, //1hr
-        role: user.role,
-        name: "ali",
-      },
-      "secret"
-    );
+
     res.status(200).send({ message: "Logged in", user, token });
   } catch (e) {
     res.status(400).json({ message: e.message });

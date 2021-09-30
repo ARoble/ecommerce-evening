@@ -4,20 +4,18 @@ import { useState, useEffect } from "react";
 import { BrowserRoute as Router, Link, useHistory } from "react-router-dom";
 import AdminNav from "./AdminNav";
 import { toast } from "react-toastify";
+import { getAllProducts, deleteProduct } from "../../Services/API";
 
 function ProductList() {
   const [products, setProduct] = useState([]);
   const history = useHistory();
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/product")
-      .then((res) => setProduct(res.data.data));
+    getAllProducts().then((res) => setProduct(res.data.data));
   }, [products]);
 
-  function deleteProduct(id) {
-    axios
-      .delete(`http://localhost:8000/api/product/${id}`)
-      .then((res) => {
+  function deleteProductFunc(id) {
+    deleteProduct(id)
+      .then(() => {
         toast.success("product deleted");
         history.push("/product/list");
       })
@@ -48,7 +46,7 @@ function ProductList() {
                   </Link>
                 </td>
                 <td>
-                  <MdDelete onClick={() => deleteProduct(product._id)} />
+                  <MdDelete onClick={() => deleteProductFunc(product._id)} />
                 </td>
               </tr>
             ))}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { placeOrder } from "../Services/API";
 function CheckOut() {
   const history = useHistory();
   const [formData, setFormData] = useState({
@@ -28,16 +28,15 @@ function CheckOut() {
     }
   }, []);
 
-  function placeOrder() {
+  function placeOrderFunc() {
     const body = {
       ...formData,
       order: cart,
       total,
     };
 
-    axios
-      .post("http://localhost:8000/api/order", body)
-      .then((res) => {
+    placeOrder(body)
+      .then(() => {
         toast.success("Thank you for your order");
         history.pushState("/");
       })
@@ -150,7 +149,7 @@ function CheckOut() {
             <button
               className="btn-checkout"
               style={{ float: "right" }}
-              onClick={() => placeOrder()}
+              onClick={() => placeOrderFunc()}
             >
               Place Order
             </button>

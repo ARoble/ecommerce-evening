@@ -41,6 +41,9 @@ min-height:100vh;
     color:dodgerblue
 }
 
+.m-10{
+    margin:'10px 0px'
+}
 /* ADMIN NAV */
 .admin-nav{
     width:15%
@@ -314,6 +317,20 @@ table th {
 }
 table tr{
 text-align:center;
+}
+
+.total{
+    font-weight: bold;
+    font-weight: 20px;
+}
+.order-info{
+  
+        position: absolute;
+        top: 0;
+        background-color: #ededed;
+        width: 400px;
+        margin-left: 20%;
+    
 }
 /* ADMIN CSS */
 

@@ -5,7 +5,7 @@ require("dotenv").config({ path: "./config.env" });
 require("./server");
 //Initalize express
 const app = express();
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 const productRouter = require("./Routes/productRoutes");
 const userRouter = require("./Routes/userRoutes");

@@ -37,7 +37,7 @@ exports.createProduct = async (req, res) => {
 };
 exports.getProduct = async (req, res) => {
   try {
-    const product = await Product.findOne({ _id: req.params.id });
+    const product = await Product.findById(req.params.id);
     res.status(200).json({
       message: "Found product",
       product,

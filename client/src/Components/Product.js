@@ -10,7 +10,7 @@ import Loading from "../Loading";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm";
 import { toast } from "react-toastify";
-
+import { getOneProduct, getReviews } from "../Services/API";
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
@@ -19,15 +19,13 @@ function Product() {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/product/${id}`).then((res) => {
+    getOneProduct(id).then((res) => {
       setProduct(res.data.product);
       setLoading(false);
     });
 
-    axios
-      .get(`http://localhost:8000/api/review/${id}`)
-      .then((res) => setReviews(res.data.reviews));
-  });
+    getReviews(id).then((res) => setReviews(res.data.reviews));
+  }, []);
 
   function addToCart(product) {
     //CODE

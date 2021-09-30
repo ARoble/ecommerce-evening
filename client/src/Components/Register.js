@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import { registerUser } from "../Services/API";
 
 function Register() {
   let history = useHistory();
@@ -12,9 +13,8 @@ function Register() {
   });
 
   function signUp() {
-    axios
-      .post("http://localhost:8000/api/user", user)
-      .then((res) => {
+    registerUser(user)
+      .then(() => {
         toast.success("user created");
         history.push("/");
       })
@@ -52,6 +52,11 @@ function Register() {
       <button className="btn-review hover" onClick={() => signUp()}>
         Sign Up
       </button>
+      <div>
+        <small>
+          Don't have an account? <Link to="login">Login</Link>
+        </small>
+      </div>
     </div>
   );
 }

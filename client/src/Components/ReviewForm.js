@@ -1,6 +1,7 @@
 import { MdStar } from "react-icons/md";
 import { useState } from "react";
-import axios from "axios";
+import { toast } from "react-toastify";
+import { createReview } from "../Services/API";
 
 function ReviewForm({ productId }) {
   const [title, setTitle] = useState("");
@@ -8,17 +9,16 @@ function ReviewForm({ productId }) {
   const [review, setReview] = useState("");
 
   function saveReview() {
-    console.log("review");
     //code
-    axios
-      .post("http://localhost:8000/api/review", {
-        title,
-        rating,
-        review,
-        user: "612d09a74ddc9e02faee2c3c",
-        product: productId,
-      })
-      .then((res) => console.log(res));
+    createReview({
+      title,
+      rating,
+      review,
+      user: "612d09a74ddc9e02faee2c3c",
+      product: productId,
+    })
+      .then(() => toast.success("Thanks for the review"))
+      .catch((e) => console.log(e));
   }
 
   return (

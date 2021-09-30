@@ -1,22 +1,22 @@
 import AdminNav from "./AdminNav";
-import axios from "axios";
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { getOrders, fullfillOrder } from "../../Services/API";
 
-import { MdDone, MdVisibility } from "react-icons/md";
+import { MdDone, MdVisibility, MdClose } from "react-icons/md";
 function OrderList() {
   const [orders, setOrders] = useState([]);
   const [selected, setSelected] = useState();
   const [info, setInfo] = useState(false);
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/order/")
-      .then((res) => setOrders(res.data.orders));
-  });
+    getOrders().then((res) => setOrders(res.data.orders));
+  }, [orders]);
 
   function fullfilled(id) {
-    axios
-      .put(`http://localhost:8000/api/order/${id}`)
-      .then((res) => console.log(res));
+    fullfillOrder(id).then((res) => {
+      toast.success("Order fullfilled");
+      setInfo(false);
+    });
   }
   return (
     <div className="container flex" style={{ postion: "relative" }}>
@@ -43,7 +43,7 @@ function OrderList() {
                   }}
                 />
               </td>
-              <td>{order.fullfilled === true ? <MdDone /> : "no "}</td>
+              <td>{order.fullfilled === true ? <MdDone /> : <MdClose />}</td>
             </tr>
           ))}
         </table>
@@ -53,32 +53,50 @@ function OrderList() {
 
   function modal() {
     return (
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          backgroundColor: "grey",
-          height: "80vh",
-          width: "70vw",
-        }}
-      >
+      <div className="order-info">
         <div>
-          <button onClick={() => setInfo(false)}>Close</button>
-          <h2>
+          <MdClose size={30} color={"red"} onClick={() => setInfo(false)} />
+          <div className="m-10">
+            <center>
+              <h3>{selected.firstName}'s order</h3>
+            </center>
+          </div>
+          <table>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
             {selected.order.map((order) => (
-              <div style={{ display: "flex" }}>
-                <h4>
-                  {order.name} {"  "}
-                </h4>
-                <h4>
-                  {order.quanity} * {order.price}
-                </h4>
-                <h4> = {order.price * order.quanity}</h4>
-              </div>
+              <tr>
+                <td> {order.name}</td>
+                <td>{order.quanity}</td>
+                <td>${order.price}</td>
+                <td>${order.price * order.quanity}</td>
+              </tr>
             ))}
-            <h4>Total: {selected.total}</h4>
-            <button onClick={() => fullfilled(selected._id)}>FullFilled</button>
-          </h2>
+            <tr className="total">
+              <td></td>
+              <td></td>
+              <td>Sub-Total:</td>
+              <td>${selected.total}</td>
+            </tr>
+          </table>
+          <div className="m-10">
+            <center>
+              {selected.fullfilled ? (
+                <p style={{ color: "green" }}>Order Fullfilled</p>
+              ) : (
+                <button
+                  className="btn-checkout"
+                  onClick={() => fullfilled(selected._id)}
+                >
+                  Fullfill Order
+                </button>
+              )}
+            </center>
+          </div>
         </div>
       </div>
     );
