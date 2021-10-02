@@ -17,6 +17,7 @@ function Login() {
       .post("http://localhost:8000/api/user/signUp", user)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("token", JSON.stringify(res.data.token));
         toast.success("User Logged In");
         history.push("/checkout");
       })

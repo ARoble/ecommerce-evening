@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 import { useParams, useHistory } from "react-router-dom";
 import AdminNav from "./AdminNav";
 import { addProduct, getOneProduct } from "../../Services/API";
+
+const token = JSON.parse(localStorage.getItem("token"));
+
 function ProductAdd() {
   const history = useHistory();
   const [product, setProduct] = useState({
@@ -49,7 +52,7 @@ function ProductAdd() {
     formData.append("description", product.description);
     formData.append("image", product.image);
     axios
-      .put(`http://localhost:8000/api/product/${id}`, formData)
+      .put(`http://localhost:8000/api/product/${id}?token=${token}`, formData)
       .then((res) => {
         toast.success("Product updated");
         history.push("/product/list");
