@@ -10,7 +10,7 @@ function OrderList() {
   const [info, setInfo] = useState(false);
   useEffect(() => {
     getOrders().then((res) => setOrders(res.data.orders));
-  }, [orders]);
+  }, []);
 
   function fullfilled(id) {
     fullfillOrder(id).then((res) => {

@@ -11,7 +11,7 @@ function ProductList() {
   const history = useHistory();
   useEffect(() => {
     getAllProducts().then((res) => setProduct(res.data.data));
-  }, [products]);
+  }, []);
 
   function deleteProductFunc(id) {
     deleteProduct(id)
