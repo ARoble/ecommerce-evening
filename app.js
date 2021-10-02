@@ -3,14 +3,16 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
 require("./server");
-//Initalize express
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 const productRouter = require("./Routes/productRoutes");
 const userRouter = require("./Routes/userRoutes");
 const reviewRouter = require("./Routes/reviewRoutes");
 const orderRouter = require("./Routes/orderRoutes");
+
+//Initalize express
+const app = express();
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use(express.static("images"));
 
