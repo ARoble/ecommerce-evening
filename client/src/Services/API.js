@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:8000/api";
+const URL = "https://ecommerce-returndev.herokuapp.com/api";
 const token = JSON.parse(localStorage.getItem("token"));
 
 export function registerUser(body) {
