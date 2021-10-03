@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
+
 require("dotenv").config({ path: "./config.env" });
 require("./server");
 const productRouter = require("./Routes/productRoutes");
@@ -21,6 +23,10 @@ app.use("/api/user", userRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/order", orderRouter);
 
+app.use(express.static("client/build"));
+app.use("*", (req, res) => {
+  res.send(path.resolve(__dirname, "client", "build", "index.html"));
+});
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {

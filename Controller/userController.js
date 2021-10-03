@@ -46,7 +46,10 @@ exports.loginUser = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, role: user.role, email: user.email },
-      "RETURN_DEV"
+      "RETURN_DEV",
+      {
+        expiresIn: "2 days",
+      }
     );
 
     res.status(200).send({ message: "Logged in", user, token });
