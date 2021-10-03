@@ -5,7 +5,10 @@ function ProductCard({ data }) {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={`http://localhost:8000/${data.image}`} alt="product" />
+        <img
+          src={`https://ecommerce-returndev.herokuapp.com/${data.image}`}
+          alt="product"
+        />
       </div>
       <div className="product-details flex">
         <div>

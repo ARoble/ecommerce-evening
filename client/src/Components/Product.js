@@ -58,7 +58,10 @@ function Product() {
       <div className="container ">
         <div className="flex">
           <div className="details-image">
-            <img src={`http://localhost:8000/${product.image}`} alt="iphone" />
+            <img
+              src={`https://ecommerce-returndev.herokuapp.com/${product.image}`}
+              alt="iphone"
+            />
           </div>
           <div className="details-desc">
             <h2>{product.name}</h2>
