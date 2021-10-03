@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "nodemon app.js",
+    "backend": "node app.js",
     "frontend": "npm start --prefix client",
     "start": "concurrently \"npm run backend\" \"npm run frontend\" ",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
